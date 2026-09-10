@@ -10,7 +10,7 @@ import {
 } from '@/components/ui/card'
 
 export function HomePage() {
-  const [clicks, setClicks] = useState(0)
+  const [showTeeth, setShowTeeth] = useState(false)
 
   return (
     <div className="space-y-6">
@@ -23,19 +23,64 @@ export function HomePage() {
 
       <Card>
         <CardHeader>
-          <CardTitle>Your app is running</CardTitle>
+          <CardTitle>Hallo, wereld</CardTitle>
           <CardDescription>
-            This is the example page. Ask Claude Code to replace it with your
-            first tool.
+            Klik op de knop om te zien hoe tanden met een beugel rechtgezet
+            worden.
           </CardDescription>
         </CardHeader>
-        <CardContent className="flex items-center gap-4">
-          <Button onClick={() => setClicks((n) => n + 1)}>Click me</Button>
-          <span className="text-sm text-muted-foreground">
-            Clicked {clicks} {clicks === 1 ? 'time' : 'times'}
-          </span>
+        <CardContent className="space-y-4">
+          <Button onClick={() => setShowTeeth((visible) => !visible)}>
+            Hallo, wereld
+          </Button>
+
+          {showTeeth && <BracesIllustration />}
         </CardContent>
       </Card>
     </div>
+  )
+}
+
+function BracesIllustration() {
+  return (
+    <svg
+      role="img"
+      aria-label="Tanden met een beugel"
+      viewBox="0 0 320 120"
+      className="mx-auto h-auto w-full max-w-sm"
+    >
+      {[0, 1, 2, 3, 4, 5].map((i) => {
+        const x = 20 + i * 50
+        const tilt = i < 3 ? (3 - i) * 3 : (i - 2) * -3
+        return (
+          <g key={i} transform={`rotate(${tilt} ${x + 20} 40)`}>
+            <rect
+              x={x}
+              y={10}
+              width={40}
+              height={60}
+              rx={14}
+              className="fill-background stroke-foreground/70"
+              strokeWidth={2}
+            />
+            <rect
+              x={x + 10}
+              y={38}
+              width={20}
+              height={14}
+              rx={3}
+              className="fill-primary/80 stroke-primary"
+              strokeWidth={1.5}
+            />
+          </g>
+        )
+      })}
+      <path
+        d="M 30 45 Q 160 30 290 45"
+        className="fill-none stroke-muted-foreground"
+        strokeWidth={2.5}
+        strokeLinecap="round"
+      />
+    </svg>
   )
 }

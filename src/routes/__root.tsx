@@ -11,11 +11,11 @@ export const Route = createRootRoute({
 function NotFound() {
   return (
     <div className="space-y-2">
-      <h1 className="text-2xl font-semibold">Page not found</h1>
+      <h1 className="text-2xl font-semibold">Pagina niet gevonden</h1>
       <p className="text-muted-foreground">
-        This address does not exist in {appConfig.name}.{' '}
+        Dit adres bestaat niet in {appConfig.name}.{' '}
         <Link to="/" className="underline">
-          Go to the home page
+          Ga naar de startpagina
         </Link>
         .
       </p>
@@ -36,7 +36,7 @@ function RootLayout() {
               to="/"
               className="text-muted-foreground hover:text-foreground [&.active]:text-foreground"
             >
-              Home
+              Start
             </Link>
           </div>
         </nav>
